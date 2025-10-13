@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const dotenv = require('dotenv').config();
+// const { body, validationResult } = require('express-validator');
+const { getContacts, createContact, updateContact, getContact, deleteContact } = require('../Controllers/contactController');
 // const { getContacts, createContact, updateContact, deleteContact } = require('../controllers/contactController');
 // const { protect } = require('../middleware/authMiddleware');
 // // Routes
@@ -13,34 +16,8 @@ const router = express.Router();
 //     res.status(201).json({message:'Create a contact'});
 // });
 
-router.route('/').get((req, res) => {
-    res.status(200).json({
-        message: 'get all contacts'
-    });
-})
+router.route('/').get(getContacts).post(createContact);
 
-router.route('/').post((req, res) => {
-    res.status(200).json({
-        message: 'Create contact'
-    });
-})
-
-router.route('/:id').put((req, res) => {
-    res.status(200).json({
-        message: `get all contacts ${req.params.id}`
-    });
-})
-
-router.route('/:id').get((req, res) => {
-    res.status(200).json({
-        message: 'get contact for id ' + req.params.id
-    });
-})
-
-router.route('/:id').delete((req, res) => {
-    res.status(200).json({
-        message: 'delete contact for id ' + req.params.id
-    });
-})
+router.route('/:id').put(updateContact).get(getContact).delete(deleteContact);
 
 module.exports = router;
