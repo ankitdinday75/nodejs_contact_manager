@@ -1,0 +1,17 @@
+pandas
+numpy
+xgboost
+scikit-learn
+backtrader
+ccxt
+
+# Optional websocket live feed:
+
+# ccxtpro
+
+python-dotenv
+pydantic
+ta
+matplotlib
+joblib
+requests
