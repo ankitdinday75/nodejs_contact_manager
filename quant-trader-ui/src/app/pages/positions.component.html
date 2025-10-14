@@ -1,0 +1,65 @@
+<div class="grid md:grid-cols-2 gap-4">
+  <div class="card">
+    <h2 class="text-lg font-semibold mb-3">Open Positions</h2>
+    <table class="w-full text-sm">
+      <thead class="text-slate-400">
+        <tr>
+          <th class="text-left">Symbol</th>
+          <th class="text-right">Size</th>
+          <th class="text-right">Entry</th>
+          <th class="text-right">PnL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of positions" class="border-t border-slate-800/60">
+          <td>{{ p.symbol }}</td>
+          <td class="text-right">{{ p.size | number: '1.4-4' }}</td>
+          <td class="text-right">{{ p.entry | number: '1.2-2' }}</td>
+          <td
+            class="text-right"
+            [class.text-green-400]="p.pnl >= 0"
+            [class.text-red-400]="p.pnl < 0"
+          >
+            {{ p.pnl | number: '1.2-2' }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h2 class="text-lg font-semibold mb-3">Recent Trades</h2>
+    <table class="w-full text-sm">
+      <thead class="text-slate-400">
+        <tr>
+          <th class="text-left">Time</th>
+          <th>Side</th>
+          <th class="text-right">Size</th>
+          <th class="text-right">Price</th>
+          <th class="text-right">PnL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of trades" class="border-t border-slate-800/60">
+          <td>{{ t.time | date: 'short' }}</td>
+          <td>
+            <span
+              class="badge"
+              [class.bg-green-900]="t.side === 'buy'"
+              [class.bg-red-900]="t.side === 'sell'"
+              >{{ t.side }}</span
+            >
+          </td>
+          <td class="text-right">{{ t.size | number: '1.4-4' }}</td>
+          <td class="text-right">{{ t.price | number: '1.2-2' }}</td>
+          <td
+            class="text-right"
+            [class.text-green-400]="(t.pnl || 0) >= 0"
+            [class.text-red-400]="(t.pnl || 0) < 0"
+          >
+            {{ (t.pnl || 0) | number: '1.2-2' }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
