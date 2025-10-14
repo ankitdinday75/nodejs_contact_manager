@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --card: #0b1020;
+  --card-2: #101735;
+  --accent: #60a5fa;
+}
+
+.card {
+  @apply rounded-2xl p-4 bg-[color:var(--card)] shadow-lg;
+}
+
+.card-2 {
+  @apply rounded-2xl p-4 bg-[color:var(--card-2)] shadow-lg;
+}
+
+.badge {
+  @apply px-2 py-0.5 rounded text-xs bg-slate-800;
+}
+
+.link {
+  @apply text-sky-400 hover:underline;
+}

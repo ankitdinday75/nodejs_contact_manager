@@ -1,0 +1,74 @@
+<div class="grid md:grid-cols-3 gap-4">
+  <div class="card md:col-span-2">
+    <div class="flex items-center justify-between mb-2">
+      <h2 class="text-lg font-semibold">SOL/USDT — Price</h2>
+      <span class="badge" *ngIf="signalInfo() as s"
+        >Signal: {{ s.action }} · p={{ s.proba | number: '1.2-2' }}</span
+      >
+    </div>
+    <apx-chart
+      [series]="priceChart().series"
+      [chart]="priceChart().chart"
+      [xaxis]="priceChart().xaxis"
+      [yaxis]="priceChart().yaxis"
+    ></apx-chart>
+    <div class="mt-3">
+      <apx-chart
+        [series]="volumeChart().series"
+        [chart]="volumeChart().chart"
+        [xaxis]="volumeChart().xaxis"
+        [yaxis]="volumeChart().yaxis"
+      ></apx-chart>
+    </div>
+  </div>
+  <div class="card flex flex-col gap-3">
+    <h2 class="text-lg font-semibold">Account</h2>
+    <ng-container *ngIf="metrics() as m; else loadingTpl">
+      <div class="grid grid-cols-2 gap-2 text-sm">
+        <div class="card-2">
+          <div class="text-slate-400">Equity</div>
+          <div class="text-xl font-semibold">
+            ${{ m.equity | number: '1.2-2' }}
+          </div>
+        </div>
+        <div class="card-2">
+          <div class="text-slate-400">Cash</div>
+          <div class="text-xl font-semibold">
+            ${{ m.cash | number: '1.2-2' }}
+          </div>
+        </div>
+        <div class="card-2">
+          <div class="text-slate-400">Position Size</div>
+          <div class="text-xl font-semibold">
+            {{ m.posSize | number: '1.2-2' }}
+          </div>
+        </div>
+        <div class="card-2">
+          <div class="text-slate-400">Last Price</div>
+          <div class="text-xl font-semibold">
+            ${{ m.lastPrice | number: '1.2-2' }}
+          </div>
+        </div>
+        <div class="card-2">
+          <div class="text-slate-400">Day PnL</div>
+          <div
+            class="text-xl font-semibold"
+            [class.text-green-400]="m.dayPnL >= 0"
+            [class.text-red-400]="m.dayPnL < 0"
+          >
+            {{ m.dayPnL | number: '1.2-2' }}%
+          </div>
+        </div>
+        <div class="card-2">
+          <div class="text-slate-400">Win Rate</div>
+          <div class="text-xl font-semibold">
+            {{ m.winRate | number: '1.0-0' }}%
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #loadingTpl>
+      <div class="text-sm text-slate-400">Loading...</div>
+    </ng-template>
+  </div>
+</div>

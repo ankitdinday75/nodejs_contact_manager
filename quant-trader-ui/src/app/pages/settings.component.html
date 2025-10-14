@@ -1,0 +1,28 @@
+<div class="card">
+  <h2 class="text-lg font-semibold mb-3">Settings</h2>
+  <div class="grid md:grid-cols-2 gap-3 text-sm">
+    <div class="card-2">
+      <div class="text-slate-400">API Base</div>
+      <div class="font-mono">{{ env.apiBase }}</div>
+    </div>
+    <div class="card-2">
+      <div class="text-slate-400">Symbol</div>
+      <div class="font-mono">{{ env.symbol }}</div>
+    </div>
+    <div class="card-2">
+      <div class="text-slate-400">Timeframe</div>
+      <div class="font-mono">{{ env.timeframe }}</div>
+    </div>
+    <div class="card-2">
+      <div class="text-slate-400">Thresholds</div>
+      <div class="font-mono">
+        enter={{ env.thresholds.enter }}
+        exit={{ env.thresholds.exit }}
+      </div>
+    </div>
+  </div>
+  <p class="mt-4 text-slate-400 text-sm">
+    Edit <span class="font-mono">src/environments/environment.ts</span> to point to your real
+    backend.
+  </p>
+</div>
